@@ -13,9 +13,20 @@ export class App extends Component {
   };
 
   render() {
+    const { showModal } = this.state;
+
     return (
       <div>
-        <Modal />
+        <button type="button" onClick={this.toggleModal}>
+          Открыть модалку
+        </button>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <button type="button" onClick={this.toggleModal}>
+              Закрыть модалку
+            </button>
+          </Modal>
+        )}
       </div>
     );
   }
