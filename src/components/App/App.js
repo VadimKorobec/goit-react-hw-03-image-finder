@@ -12,22 +12,32 @@ export class App extends Component {
     loading: false,
     showModal: false,
     query: '',
+    error: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.query)
+    if (prevProps.query !== this.props.query) {
+      this.setState({ loading: true });
+
+      this.fetch(
+        'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
+      )
+        .then(res => res.json())
+        .then(query => this.setState({ query }))
+        .finally(() => this.setState({ loading: false }));
+    }
   }
 
-  componentDidMount() {
-    this.setState({ loading: true });
+  // componentDidMount() {
+  //   this.setState({ loading: true });
 
-    fetch(
-      'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
-    )
-      .then(res => res.json())
-      .then(images => this.setState({ images }))
-      .finally(() => this.setState({ loading: false }));
-  }
+  //   fetch(
+  //     'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
+  //   )
+  //     .then(res => res.json())
+  //     .then(images => this.setState({ images }))
+  //     .finally(() => this.setState({ loading: false }));
+  // }
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({
