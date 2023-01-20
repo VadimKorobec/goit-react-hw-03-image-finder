@@ -2,14 +2,14 @@ export const Searchbar = () => {
   return (
     <header>
       <form>
-        <button type="submit" class="button">
-          <span class="button-label">Search</span>
+        <button type="submit">
+          <span>Search</span>
         </button>
 
         <input
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
       </form>
