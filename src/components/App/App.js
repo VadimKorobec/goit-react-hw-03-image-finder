@@ -1,4 +1,4 @@
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'components/Button/Button';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
@@ -24,6 +24,7 @@ export class App extends Component {
       )
         .then(res => res.json())
         .then(query => this.setState({ query }))
+        .catch(error => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));
     }
   }
@@ -55,6 +56,7 @@ export class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
+        {this.state.error && toast.error()}
         <ImageGallery images={this.state.images} />
         <Button />
 
