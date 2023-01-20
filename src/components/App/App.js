@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'components/Button/Button';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Modal } from 'components/Modal/Modal';
@@ -6,10 +8,15 @@ import { Component } from 'react';
 
 export class App extends Component {
   state = {
-    images: null,
+    images: [],
     loading: false,
     showModal: false,
+    query: '',
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.query)
+  }
 
   componentDidMount() {
     this.setState({ loading: true });
@@ -28,13 +35,17 @@ export class App extends Component {
     }));
   };
 
+  handleFormSubmit = query => {
+    this.setState({ query });
+  };
+
   render() {
     const { showModal } = this.state;
 
     return (
       <div>
-        <Searchbar />
-        <ImageGallery />
+        <Searchbar onSubmit={this.handleFormSubmit} />
+        <ImageGallery images={this.state.images} />
         <Button />
 
         {showModal && (
@@ -44,6 +55,7 @@ export class App extends Component {
             </button>
           </Modal>
         )}
+        <ToastContainer theme="colored" position="top-right" autoClose={2000} />
       </div>
     );
   }
