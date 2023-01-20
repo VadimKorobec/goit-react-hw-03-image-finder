@@ -55,13 +55,13 @@ export class App extends Component {
   };
 
   render() {
-    const { showModal } = this.state;
+    const { showModal, images } = this.state;
 
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
         {this.state.error && toast.error()}
-        <ImageGallery images={this.state.images} />
+        <ImageGallery images={images} />
         <Button />
 
         {showModal && (
