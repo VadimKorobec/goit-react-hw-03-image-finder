@@ -1,4 +1,5 @@
 import { Modal } from 'components/Modal/Modal';
+import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 
 export class App extends Component {
@@ -26,9 +27,8 @@ export class App extends Component {
 
     return (
       <div>
-        <button type="button" onClick={this.toggleModal}>
-          Открыть модалку
-        </button>
+        <Searchbar />
+
         {showModal && (
           <Modal onClose={this.toggleModal}>
             <button type="button" onClick={this.toggleModal}>
