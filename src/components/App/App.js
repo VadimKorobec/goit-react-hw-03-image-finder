@@ -22,7 +22,11 @@ export class App extends Component {
       this.fetch(
         'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
       )
-        .then(res => res.json())
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
         .then(query => this.setState({ query }))
         .catch(error => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));
