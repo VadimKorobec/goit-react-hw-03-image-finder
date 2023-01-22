@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
+import { Loader } from 'components/Loader/Loader';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 import { fetchImages } from 'services/pixabayApi';
@@ -38,6 +39,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.handleSubmit} />
         <ImageGallery images={images} />
         {!!images.length && <Button onLoadMore={this.handleLoadMore} />}
+        <Loader />
       </>
     );
   }
