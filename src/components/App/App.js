@@ -1,78 +1,7 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Button } from 'components/Button/Button';
-import { ImageGallery } from 'components/ImageGallery/ImageGallery';
-import { Modal } from 'components/Modal/Modal';
-import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 
 export class App extends Component {
-  state = {
-    images: [],
-    loading: false,
-    showModal: false,
-    query: '',
-    error: null,
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.query !== this.props.query) {
-      this.setState({ loading: true });
-
-      this.fetch(
-        'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
-      )
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .then(query => this.setState({ query }))
-        .catch(error => this.setState({ error }))
-        .finally(() => this.setState({ loading: false }));
-    }
-  }
-
-  // componentDidMount() {
-  //   this.setState({ loading: true });
-
-  //   fetch(
-  //     'https://pixabay.com/api/?q=cat&page=1&key=31618598-dd0b87f36bc5180b6dfd99237&image_type=photo&orientation=horizontal&per_page=12'
-  //   )
-  //     .then(res => res.json())
-  //     .then(images => this.setState({ images }))
-  //     .finally(() => this.setState({ loading: false }));
-  // }
-
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
-  };
-
-  handleFormSubmit = query => {
-    this.setState({ query });
-  };
-
   render() {
-    const { showModal, images } = this.state;
-
-    return (
-      <div>
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        {this.state.error && toast.error()}
-        <ImageGallery images={images} />
-        <Button />
-
-        {showModal && (
-          <Modal onClose={this.toggleModal}>
-            <button type="button" onClick={this.toggleModal}>
-              Закрыть модалку
-            </button>
-          </Modal>
-        )}
-        <ToastContainer theme="colored" position="top-right" autoClose={2000} />
-      </div>
-    );
+    return;
   }
 }
