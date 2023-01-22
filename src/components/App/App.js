@@ -1,3 +1,5 @@
+import { Button } from 'components/Button/Button';
+import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 import { fetchImages } from 'services/pixabayApi';
@@ -13,7 +15,9 @@ export class App extends Component {
     const { query, page } = this.state;
     if (prevState.query !== query || prevState.page !== page) {
       fetchImages(query, page).then(resp => {
-        this.setState(prev => ({ images: [...prev.images, ...resp.hits] }));
+        this.setState(prev => ({
+          images: page === 1 ? [...resp.hits] : [...prev.images, ...resp.hits],
+        }));
       });
     }
   }
@@ -22,10 +26,18 @@ export class App extends Component {
     this.setState({ query });
   };
 
+  handleLoadMore = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
   render() {
+    const { images } = this.state;
+
     return (
       <>
         <Searchbar onSubmit={this.handleSubmit} />
+        <ImageGallery images={images} />
+        {!!images.length && <Button onLoadMore={this.handleLoadMore} />}
       </>
     );
   }
