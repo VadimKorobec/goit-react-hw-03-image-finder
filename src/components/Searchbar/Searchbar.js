@@ -1,18 +1,18 @@
-import { Searchbar } from './Searchbar.styled';
-
 export const Searchbar = ({ onSubmit }) => {
   const handleSubmitForm = event => {
     event.preventDefault();
     onSubmit(event.currentTarget.query.value);
   };
+
   return (
-    <Searchbar>
-      <form onSubmit={handleSubmitForm}>
-        <button type="submit">
-          <span>Search</span>
+    <header className="Searchbar">
+      <form className="SearchForm" onSubmit={handleSubmitForm}>
+        <button type="submit" className="SearchForm-button">
+          <span className="SearchForm-button-label">Search</span>
         </button>
 
         <input
+          className="SearchForm-input"
           type="text"
           name="query"
           autoComplete="off"
@@ -20,6 +20,6 @@ export const Searchbar = ({ onSubmit }) => {
           placeholder="Search images and photos"
         />
       </form>
-    </Searchbar>
+    </header>
   );
 };
