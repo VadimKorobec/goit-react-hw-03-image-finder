@@ -1,3 +1,3 @@
 export const ImageGallery = () => {
-  return;
+  return <ul className="ImageGallery"></ul>;
 };
