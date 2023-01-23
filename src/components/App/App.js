@@ -5,6 +5,7 @@ import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 import { fetchImages } from 'services/pixabayApi';
 import { Wrapper } from './App.styled';
+import { ToastContainer } from 'react-toastify';
 
 export class App extends Component {
   state = {
@@ -58,6 +59,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.handleSubmit} />
         <ImageGallery images={images} />
         {<Wrapper>{this.renderButtonOrLoader()}</Wrapper>}
+        <ToastContainer theme="colored" position="top-right" autoClose={3000} />
       </>
     );
   }
