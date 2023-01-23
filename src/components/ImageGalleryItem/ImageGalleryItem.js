@@ -7,20 +7,6 @@ export class ImageGalleryItem extends Component {
     isModalOpen: false,
   };
 
-  componentDidMount() {
-    window.addEventListener('keydown', this.onEscapePress);
-  }
-
-  componentWillUnmount() {
-    window.addEventListener('keydown', this.onEscapePress);
-  }
-
-  onEscapePress = event => {
-    if (event.code === 'Escape') {
-      this.props.onClouse();
-    }
-  };
-
   handleToggelModal = () => {
     this.setState(prevState => ({ isModalOpen: !prevState.isModalOpen }));
   };
@@ -28,6 +14,7 @@ export class ImageGalleryItem extends Component {
   render() {
     const { webformatURL, tags, largeImageURL } = this.props.image;
     const { isModalOpen } = this.state;
+
     return (
       <>
         <li className="ImageGalleryItem">
@@ -39,7 +26,7 @@ export class ImageGalleryItem extends Component {
           />
         </li>
         {isModalOpen && (
-          <Modal url={largeImageURL} onClouse={this.handleToggelModal} />
+          <Modal url={largeImageURL} onClose={this.handleToggelModal} />
         )}
       </>
     );
