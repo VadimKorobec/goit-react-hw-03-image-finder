@@ -4,6 +4,7 @@ import { Search } from './Searchbar.styled';
 export const Searchbar = ({ onSubmit }) => {
   const handleSubmitForm = event => {
     event.preventDefault();
+
     onSubmit(event.currentTarget.query.value);
   };
 
