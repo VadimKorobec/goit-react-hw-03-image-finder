@@ -4,6 +4,7 @@ import { Loader } from 'components/Loader/Loader';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
 import { fetchImages } from 'services/pixabayApi';
+import { Wrapper } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -56,7 +57,7 @@ export class App extends Component {
       <>
         <Searchbar onSubmit={this.handleSubmit} />
         <ImageGallery images={images} />
-        {this.renderButtonOrLoader()}
+        {<Wrapper>{this.renderButtonOrLoader()}</Wrapper>}
       </>
     );
   }
